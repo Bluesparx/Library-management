@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ofstream addB("book.txt", ios::app);
+
 string authorN, bookN;
 int ids;
 
