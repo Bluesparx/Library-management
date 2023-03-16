@@ -13,8 +13,8 @@
 ## Functionality
 
   ### For Users
-    Upon executing the program, the user will be welcomed by a welcome screen, asking whether they have anaccount or not.
-    If they don't have an account, they will be redirected to Sign up page.
+    Upon executing the program, the user will be welcomed by a welcome screen, asking whether they have 
+    an account or not. If they don't have an account, they will be redirected to Sign up page.
 
       Following this users are given 5 options they can choose from-
       1. Issue a book.
