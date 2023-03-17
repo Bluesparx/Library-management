@@ -12,10 +12,10 @@
 ## Functionality
 
   ### For Users
-    The users will be welcomed by a welcome screen, asking whether they have 
-    an account or not. If they don't have an account, they will be redirected to Sign up page where they can
-    create an account to login.
-    **Users do not have the power to terminate the program.**
+   The users will be welcomed by a welcome screen, asking whether they have 
+   an account or not. If they don't have an account, they will be redirected to Sign up page where they can
+   create an account to login.
+   **Users do not have the power to terminate the program.**
 
       Following this users are given 5 options they can choose from-
       1. Issue a book.
@@ -26,8 +26,8 @@
       5. Logout.
    
   ### For Admin
-    **Admin has the power to execute the program or terminate it** 
-    Upon logging in as *admin* they will be given 6 options they can choose from-
+   **Admin has the power to execute the program or terminate it** 
+   Upon logging in as *admin* they will be given 6 options they can choose from-
       
       1. Add a new book.
       2. Delete a book.
@@ -37,9 +37,9 @@
       6. Exit.
     
 ## Usage
- This library management system makes it easy to keep track of books, issuing and returning, in an efficient way without much hassle. Users can easily search for books  and check their account information, while administrators have control over the entire system.
+This library management system makes it easy to keep track of books, issuing and returning, in an efficient way without much hassle. Users can easily search for books  and check their account information, while administrators have control over the entire system.
  >Prerequisites: Compiler
 
 ## Conclusion
- By using this library management system, librarians can streamline their operations and improve their efficiency. With the ability to easily add and remove books, keep track of issues and returns, and generate reports, librarians can spend more time providing valuable services to their users.
+By using this library management system, librarians can streamline their operations and improve their efficiency. With the ability to easily add and remove books, keep track of issues and returns, and generate reports, librarians can spend more time providing valuable services to their users.
 
