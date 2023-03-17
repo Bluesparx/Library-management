@@ -1,8 +1,8 @@
 # Library Management System
-> This is a library management system written in C++ using Object Oriented Programming concepts.
+> A library management system is a software application that helps librarians manage library tasks such as book lending, book return, and inventory management. This library management system is written in C++ using Object Oriented Programming concepts.
 
 ## Objectives
-  The program allows users to register and issue, return, keep track of their issues and search for books in the library. Also gives administrator control over the system. It has the following main functions:
+  The program allows users to register and issue, return, keep track of their issues and search for books in the library. The administrator has control over the system. It has the following main functions:
 
   * Add a new book.
   * Delete a book.
@@ -13,7 +13,8 @@
 
   ### For Users
     The users will be welcomed by a welcome screen, asking whether they have 
-    an account or not. If they don't have an account, they will be redirected to Sign up page.
+    an account or not. If they don't have an account, they will be redirected to Sign up page where they can
+    create an account to login.
     **Users do not have the power to terminate the program.**
 
       Following this users are given 5 options they can choose from-
@@ -36,7 +37,9 @@
       6. Exit.
     
 ## Usage
- 
- This program can be used to keep track of books, issuing and returning, in an easy way without much hassle.
+ This library management system makes it easy to keep track of books, issuing and returning, in an efficient way without much hassle. Users can easily search for books  and check their account information, while administrators have control over the entire system.
  >Prerequisites: Compiler
+
+## Conclusion
+ By using this library management system, librarians can streamline their operations and improve their efficiency. With the ability to easily add and remove books, keep track of issues and returns, and generate reports, librarians can spend more time providing valuable services to their users.
 
