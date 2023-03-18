@@ -40,7 +40,8 @@ int Login::login(){
     system("cls");
         string usr;
         string pss;
-        cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * *" << endl;
+        cout << "\n\n\t\t\t\tLOGIN" << endl;
+        cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * " << endl;
         cout << "\n\t\t\tEnter username: ";
         cin >> usr;
         cout << "\n\t\t\tEnter password: ";
@@ -73,8 +74,8 @@ int Login::login(){
 
 void Login::regis(){
     system("cls");
-        cout<<"\t\t\tNEW USER REGISTRATION   \n";
-        cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * \n";
+        cout<<"\n\n\t\t\tNEW USER REGISTRATION   \n";
+        cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * " << endl;
         cout << "\t\t\tEnter new username: ";
         cin >> user;
         cout << "\t\t\tEnter new password: ";
@@ -115,7 +116,7 @@ void database::delBook(){
     string bname1;
     char conf;
     bool found = false;
-    cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * * * * * \n";
+    cout << "\n\t\t   * * * * * * * * * * * * * * * * * * * * * * * * * \n";
     cout << "\n\n\t\t\tEnter name of book to delete: ";
     cin >> bname1;
     cout<<"\n\n\t\t\tAre you sure you want to delete this book?\n\t\t\t(y/n): ";
@@ -131,7 +132,7 @@ void database::delBook(){
         }
     }
     if (!found){
-        cout << "\n\n\t\tBook Not Found...";
+        cout << "\n\n\t\tBook Not Found...\n\n";
     }
     else if (count > 0){
         cout << "\n\n\t\t  * * * * Book Deleted Successfully * * * *\n\n";
@@ -140,6 +141,7 @@ void database::delBook(){
     file1.close();
     remove("book.txt");
     rename("temp.txt","book.txt");
+    cout<<"\t\t\t";
     system("pause");
     }
 }
@@ -217,7 +219,7 @@ int Student::add(){
     string stu, a, b, c, d, e, f;
     while(issu>>stu>>a>>b>>c>>d>>e>>f){
         if(abook==a){
-        cout<<"\n\t\t\tThis book is already issued on "<<b<<" "<<" "<<c<<" "<<d<<" "<<f <<" at "<<e<<"\n\n";
+        cout<<"\n\t\t\tThis book is already issued on "<<b<<" "<<" "<<c<<" "<<d<<" "<<f <<" at "<<e<<"\n\n\t\t\t";
         system("pause");
         chk = false;
         }
@@ -230,7 +232,7 @@ int Student::add(){
             cout << "\n\t\t\t* * * * * * * * * * * * * * * * * *\n";
             cout << "\t\t\t| Book name: " << bookN << "\n\t\t\t| Author name: " << authorN;
             found = true;
-            cout<<"\n\t\t\t| Date and time of issue: "<<date<<"\n\n\t\t";
+            cout<<"\n\t\t\t| Date and time of issue: "<<date<<"\n\n\t\t\t";
             strcpy(stud,user);
             fstream issues;
             issues.open("issues.txt", ios::out|ios::app);
@@ -253,34 +255,24 @@ int Student::edit(){
     system("cls");
     string temp;
     int choice;
-    ifstream rec("records.txt");
-    ifstream issu("issues.txt");
-    ofstream file1("temp.txt");
-    ofstream file2("temp2.txt");
     int count = 0;
     bool found = false;
     cout << "\n\t\t * * * * * * * * * * * * * * * * * * * * * * * *\n";
     cout << "\n\n\t\t\tEnter name of book to return: ";
     cin >> temp;
     string recc, a, b, c, d, e, f;
-    while (rec>>recc>>a>>b>>c>>d>>e){
-        if (temp == recc){
-            found = true;
+    fstream issu, tempf;
+    issu.open("issues.txt");
+    tempf.open("tempf.txt");
+    while (issu>>recc>>a>>b>>c>>d>>e>>f)
+    {
+        if (user==recc)
+        {
+            found=true;
         }
-        else{
-            file1 <<recc<< " " <<a<<"\t"<<b<<" "<<c<<" "<<d<<" "<<e<< endl;
-        }
+        else
+        tempf<<recc<<"\t"<<a<<"\t"<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f;
     }
-    file1.close();
-    while (issu>>recc>>a>>b>>c>>d>>e>>f){
-        if (temp == recc){
-            count++;
-        }
-        else{
-            file2 <<recc<< "\t" <<a<<" "<<b<<" "<<c<<" "<<d<<" "<<e<<" "<<f<< endl;
-        }
-    }
-    issu.close();
     time_t now=time(0);
     char* date = ctime(&now);
     if (!found){
@@ -290,14 +282,14 @@ int Student::edit(){
     else{
         cout << "\n\n\t\t\t\tBOOK DETAILS";
         cout << "\n\t\t\t----------------------------------------\n";
-        cout << "\t\t\t| Book name: " << bookN<< "\n\t\t\t| Author name: " << authorN;
+        cout << "\t\t\t| Book name: " << a<< "\n\t\t\t| Author name: " <<b;
         found = true;
-        cout<<"\n\t\t\t| Date and time of return: "<<date<<"\n\n\t\t";
-        cout << "\t--------Book Returned Successfully--------\n\n";
+        cout<<"\n\t\t\t| Date and time of return: "<<date<<"\n\n";
+        cout << "\t\t\t--------Book Returned Successfully--------\n\n";
     }
-    rec.close();
-    file2.close();
-    remove("records.txt");
+    issu.close();
+    tempf.close();
+    remove("tempf.txt");
     remove("temp2.txt");
     rename("temp.txt","records.txt");
     rename("temp2.txt","issues.txt");
