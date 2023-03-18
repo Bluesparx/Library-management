@@ -1,17 +1,9 @@
 #include <iostream>
-#include <string.h>
-#include <stdlib.h>
 #include <bits/stdc++.h>
 #include <ctime>
-#include<conio.h>
-#include <iomanip>
+#include<string.h>
 
 using namespace std;
-//global variables
-time_t now=time(0);
-char* date = ctime(&now);
-char abookk[50];
-char stud[50];
 
 char authorN[50], bookN[50];
 char user[50];
@@ -36,12 +28,12 @@ int Login::initial(){
         cout << "\n\n\t\t\t* * * * * * * * * * * * * * * * *\n";
         cout << "\n\t\t\t|  LIBRARY  MANAGEMENT  SYSTEM  |\n";
         cout << "\n\t\t\t* * * * * * * * * * * * * * * * *\n";
-        cout << "\n\n\t\t\tDo you have an account? yes or no. ";
+        cout << "\n\n\t\t\tDo you have an account? \n\t\t\tyes or no: ";
         cin >> init;
         if (init == "yes"){
             return 1;
         }
-        else if (init == "no"){
+        else if (init =="no"){
             return 0;
         }
     else
@@ -53,7 +45,7 @@ int Login::login(){
     system("cls");
         string usr;
         string pss;
-        cout << "\n\t\t\t* * * * * * * * * * * * * *" << endl;
+        cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * *" << endl;
         cout << "\n\t\t\tEnter username: ";
         cin >> usr;
         cout << "\n\t\t\tEnter password: ";
@@ -119,10 +111,37 @@ void database::addBook(){
     db.close();
 }
 
-// void database::delBook(){
-
-
-// }
+void database::delBook(){
+    system("cls");
+    ifstream file("book.txt");
+    ofstream file1("temp.txt");
+    int count = 0;
+    string bname1;
+    bool found = false;
+    cout << "\n\t\t* * * * * * * * * * * * * * * * * * * * * * * * * \n";
+    cout << "\n\n\t\t\tEnter name of book to delete: ";
+    cin >> bname1;
+    while (file >> bookN >> authorN){
+        if (bname1 == bookN){
+            count++;
+            found = true;
+        }
+        else{
+            file1 << bookN << " " << authorN << endl;
+        }
+    }
+    if (!found){
+        cout << "\n\n\t\tBook Not Found...";
+    }
+    else if (count > 0){
+        cout << "\n\n\t\t* * * * Book Deleted Successfully * * * *\n\n";
+    }
+    file.close();
+    file1.close();
+    remove("book.txt");
+    rename("temp.txt","book.txt");
+    system("pause");
+}
 
 void database::displayBooks(){
     fstream books;
@@ -138,10 +157,9 @@ void database::displayBooks(){
         books.close();
     }
     else{
-        do{
-        books>>bookN>>authorN;
+        while(books>>bookN>>authorN){
         cout<<"\t"<<bookN<<"\t\t\t"<<authorN<<"\n";
-        }while(!books.eof());
+        };
         system("pause");
         books.close();
     }
@@ -150,8 +168,8 @@ void database::displayBooks(){
 void database::issuedBooks(){
     system("cls");
     cout<<"\n\n\t\tLIST OF ISSUED BOOKS\n";
-    cout<<"\n----------------------------------------------------------------\n";
-    cout<<"\n\tSTUDENT \t\t BOOK \t\t DATE OF ISSUE";
+    cout<<"\n----------------------------------------------------------------";
+    cout<<"\n\tSTUDENT\t\tBOOK \t\t DATE OF ISSUE";
     cout<<"\n----------------------------------------------------------------\n";
     fstream issu;
     issu.open("issues.txt", ios::in);
@@ -161,15 +179,16 @@ void database::issuedBooks(){
         issu.close();
     }
     else{
-        string day,month, year, datee, timee;
-        do{
-        issu>>stud>>abookk>>day>>month>>datee>>timee>>year;
-        cout<<"\t" << stud<< "\t" << abookk << "\t" << day << " " << month << " " << datee << " " << timee << " " << year << endl;
-        }while(!issu.eof());
-        system("pause");
+        string line;
+        while(getline(issu, line)){
+        cout<<"\n" << line;
+        }
+        cout<<"\n";
         issu.close();
+        system("pause");
     }
 }
+
 class Student
 {
 public:
@@ -181,15 +200,18 @@ public:
 
 int Student::add(){
     string abook;
+    time_t now=time(0);
+    char* date = ctime(&now);
+    char stud[50];
+
     system("cls");
     cout << "\n\n\n\t\t\t* * * * * * * * * * * * * * * * * *\n";
     cout << "\t\t\tEnter name of book you want: ";
     cin>>abook;
     bool found = false;
     fstream myfile("book.txt");
-    while (!myfile.eof())
+    while (myfile>>bookN>>authorN)
     {
-        myfile >> bookN >> authorN;
         if (abook == bookN){
             cout << "\n\n\t\t\t\tBOOK DETAILS\n";
             cout << "\n\t\t\t* * * * * * * * * * * * * * * * * *\n";
@@ -202,7 +224,7 @@ int Student::add(){
             records.open("records.txt", ios::out|ios::app);
             issues.open("issues.txt", ios::out|ios::app);
             // date1= date;
-            records<<"\t\t"<<abook<<"\t\t"<<date;
+            records<<"\t\t"<<abook<<"\t\t\t"<<date;
             issues<<"\t\t"<<stud<<"\t\t"<<abook<<"\t\t"<<date;
             records.close();
             issues.close();
@@ -229,8 +251,7 @@ int Student::edit(){
     
     cout << "\n\t\t\tDo you want to issue new book? 1(yes) or 0(no). ";
     cin >> choice;
-    if (choice == 1)
-    {
+    if (choice == 1){
         return 1;
     }
     else
@@ -242,21 +263,20 @@ void Student::record(){
     cout<<"\n-----------------------------------------------------------------------------------\n";
     fstream recordss;
     recordss.open("records.txt", ios::in);
-    string book, day1,month1,date1,time1,year1;
-    while(!recordss.eof()){
-    recordss>>book>>day1>>month1>>date1>>time1>>year1;
-    cout<<"\n\t\t"<<book<<"\t\t\t\t"<<day1<<" "<<month1<<" "<<date1<<" "<<time1<<" "<<year1<<endl;
-    }
+    string line1;
+    while(recordss>>line1){
+    cout<<"\n\t\t"<<line1;
+    };
     recordss.close();
     system("pause");
 }
 
 void Student::mydet(){
-  cout<<"\n\t\t\t  USER DETAILS"<<endl;
-  cout<<"\t\t\t----------------------"<<endl;
-  cout<<"\t\t\t| Username: "<<user<<endl;
-  cout<<"\t\t\t| Password: "<<pass<<endl;
-  cout<<"\t\t\t----------------------"<<endl;
+  cout<<"\n\t\t\t\tUSER DETAILS"<<endl;
+  cout<<"\t\t\t  ----------------------"<<endl;
+  cout<<"\t\t\t  | Username:"<<setw(10)<<user<<" |"<<endl;
+  cout<<"\t\t\t  | Password:"<<setw(10)<<pass<<" |"<<endl;
+  cout<<"\t\t\t  ----------------------"<<endl;
   system("pause");
 }
 
@@ -287,8 +307,7 @@ int main()
                 break;
             case 2:{
                 int returnn= stu.edit();
-                if (returnn==1)
-                {
+                if (returnn==1){
                     stu.add();
                 }
                 break;
@@ -315,8 +334,8 @@ int main()
             adminCon:
             system("cls");
             cout << "\n\n\t\t\t--------Logged in as admin--------\n";
-            cout << "\n\t1. Add a book. \n\t2. Delete a book. \n\t3. See list of all books.\n\t4. See list of issued books.\n\t5. Exit";
-            cout<<"\n\t6. Log out.";
+            cout << "\n\t1. Add a book. \n\t2. Delete a book. \n\t3. See list of all books.\n\t4. See list of issued books.\n\t5. Logout.";
+            cout<<"\n\t6. TERMINATE.";
             cout<<"\n\n\tEnter a number : ";
             cin>>choicea;
             switch(choicea){
@@ -325,8 +344,8 @@ int main()
                 break;
                 
             case 2:
-                // delBook();
-                
+                db.delBook();
+                break;
             case 3:
                 {
                 db.displayBooks();
@@ -346,7 +365,7 @@ int main()
             goto adminCon;
         }
         else{
-        cout<<"\n\t\tUser credentials do not match\n\t\t";
+        cout<<"\n\t\t|  User credentials do not match or exist  |\n\t\t\n\t\t|  ";
         system("pause");
         goto initi;
         }
@@ -359,6 +378,5 @@ int main()
         system("pause");
         goto initi;
     }
-
     return 0;
 }
