@@ -9,9 +9,7 @@ char authorN[50], bookN[50];
 char user[50];
 char pass[50];
 
-
-class Login
-{
+class Login{
 public:
     int initial();
     int login();
