@@ -236,8 +236,12 @@ int Student::add(){
             strcpy(stud,user);
             fstream issues;
             issues.open("issues.txt", ios::out|ios::app);
-            issues<<"\t\t"<<stud<<"\t\t"<<abook<<"\t\t"<<date;
+            issues<<"\t"<<stud<<"\t\t"<<abook<<"\t\t"<<date;
             issues.close();
+            fstream recs;
+            recs.open("records.txt", ios::out|ios::app);
+            recs<<"\t"<<stud<<"\t\t"<<abook<<"\t\t"<<date;
+            recs.close();
             system("pause");
             return 1;
             break;
@@ -284,15 +288,13 @@ int Student::edit(){
         cout << "\n\t\t\t----------------------------------------\n";
         cout << "\t\t\t| Book name: " << a<< "\n\t\t\t| Author name: " <<b;
         found = true;
-        cout<<"\n\t\t\t| Date and time of return: "<<date<<"\n\n";
+        cout<<"\n\t\t\t| Date and time of return: "<<b<<" "<<c<<" "<<d<<" "<<f<<" "<<e<<"\n\n";
         cout << "\t\t\t--------Book Returned Successfully--------\n\n";
     }
     issu.close();
     tempf.close();
     remove("tempf.txt");
-    remove("temp2.txt");
-    rename("temp.txt","records.txt");
-    rename("temp2.txt","issues.txt");
+    rename("tempf.txt","issues.txt");
     cout << "\n\t\t\tDo you want to issue new book? 1(yes) or 0(no). ";
     cin >> choice;
     if (choice == 1){
@@ -307,7 +309,7 @@ void Student::record(){
     cout<<"\n\t\tBOOK NAME\t\t\tDATE AND TIME OF ISSUE";
     cout<<"\n-----------------------------------------------------------------------------------\n";
     fstream recordss;
-    recordss.open("issues.txt", ios::in);
+    recordss.open("records.txt", ios::in);
     string line, a, b, c, d, e, f;
     while(recordss>>line>>a>>b>>c>>d>>e>>f){
         if(line==user){
@@ -423,10 +425,9 @@ int main()
     {
         student.regis();
         cout << "\n\n\t\t\tYou can now login :)\n";
-        cout<<"\n\t\t* * * * * * * * * * * * * * * * * * * * * \n\n\t\t";
+        cout<<"\n\t\t  * * * * * * * * * * * * * * * * * * * * * \n\n\t\t";
         system("pause");
         goto initi;
     }
     return 0;
 }
-
