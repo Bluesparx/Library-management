@@ -1,5 +1,6 @@
 # Library Management System :seedling:
 > A library management system is a software application that helps libraries manage library tasks such as book lending, book return, and inventory management. This library management system is written in C++ using Object Oriented Programming and File Handling concepts.
+![add](https://user-images.githubusercontent.com/116333715/226153114-59542639-0914-4870-93b6-bab00535e1ca.PNG)
 
 ## :black_nib: Objectives
   The program allows users to register and issue, return, keep track of their issues and search for books in the library. The administrator has control over the system. It has the following main functions:
@@ -42,6 +43,7 @@ This library management system makes it easy to keep track of books, issuing and
  
 ## :black_nib: Limitations
 The application lacks the following functions : 
+
      1. Cannot add return date to records.
      2. Assumes that only 1 copy of a book is present.
  
