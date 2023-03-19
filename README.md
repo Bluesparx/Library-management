@@ -39,7 +39,11 @@
 ## :black_nib: Usage 
 This library management system makes it easy to keep track of books, issuing and returning, in an efficient way without much hassle. Users can easily search for books  and check their account information, while administrators have control over the entire system.
  >Prerequisites: Compiler
-
+ 
+## :black_nib: Limitations
+The application lacks the following functions : 
+     1. Cannot add return date to records.
+     2. Assumes that only 1 copy of a book is present.
+ 
 ## :black_nib: Conclusion
 By using this library management system, librarians can streamline their operations and improve their efficiency. With the ability to easily add and remove books, keep track of issues and returns, and generate reports, librarians can spend more time providing valuable services to their users.
-
